@@ -3,8 +3,9 @@ const { validationResult } = require('express-validator');
 
 const validarCampos = (req, res = response, next) => {
     
-    // manejo de errores
+    // Manejo de errores
     const errors = validationResult( req );
+    // Si hay errores
     if( !errors.isEmpty() ){
         return res.status(400).json({
             ok: false,
@@ -12,7 +13,7 @@ const validarCampos = (req, res = response, next) => {
         });
     }
 
-    next();
+    next(); // Da paso al siguiente middleware
 }
 
 module.exports = {

@@ -20,8 +20,8 @@ app.use( express.static('public') );
 app.use( express.json() );
 
 // Rutas
-app.use('/api/auth', require('./routes/auth') );
-app.use('/api/events', require('./routes/events') );
+app.use('/api/auth', require('./routes/auth') );    // auth incluye crear, login, renew
+app.use('/api/events', require('./routes/events') );    // CRUD: Eventos
 
 // Escuchar peticiones
 app.listen( process.env.PORT, () =>{

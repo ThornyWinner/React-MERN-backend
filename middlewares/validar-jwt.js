@@ -3,9 +3,10 @@ const jwt = require('jsonwebtoken');
 
 const validarJWT = ( req, res = response, next ) => {
     
-    // x-token headers
+    // x-token solicitado en los headers
     const token = req.header('x-token');
 
+    // Si el token no viene en la petición
     if ( !token ){
         return res.status(401).json({
             ok: false,
@@ -15,6 +16,7 @@ const validarJWT = ( req, res = response, next ) => {
 
     try {
         
+        // Verifica que no haya alteraciones en el token 
         const { uid, name } = jwt.verify(
             token,
             process.env.SECRET_JWT_SEED
@@ -30,6 +32,7 @@ const validarJWT = ( req, res = response, next ) => {
         });
     }
 
+    // Si todo está correcto llama lo siguiente
     next();
 }
 

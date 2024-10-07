@@ -2,7 +2,7 @@
    Rutas de Usuarios / Auth
    host + /api/auth
  */
-const {Router} = require('express');
+const { Router } = require('express');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validar-campos');
 const { crearUsuario, loginUsuario, revalidarToken } = require('../controllers/auth');
@@ -10,6 +10,7 @@ const { validarJWT } = require('../middlewares/validar-jwt');
 
 const router = Router();
 
+// Endpoint/Ruta de creación un usuario
 router.post(
     '/new', 
     [ // middlewares
@@ -21,6 +22,7 @@ router.post(
     crearUsuario
 );
 
+// Endpoint/Ruta de login un usuario
 router.post(
     '/',
     [ // middlewares
@@ -31,7 +33,7 @@ router.post(
     loginUsuario
 );
 
-
+// Endpoint/Ruta de revalidación de token de seguridad del usuario
 router.get('/renew', validarJWT, revalidarToken);
 
 
