@@ -1,3 +1,7 @@
+/* Este código cambia el color de fondo de toda la página web a gris, aplicándolo tanto al elemento <html> como al <body>. */
+
+
+/* Establece el color de fondo gris para los elementos <html> y <body> */
 html, body {
     background-color: grey;
 }
