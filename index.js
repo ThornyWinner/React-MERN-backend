@@ -4,6 +4,7 @@
 
 
 // Importamos express, dotenv para variables de entorno, cors y la conexión a la base de datos
+const path = require('path');
 const express = require('express');
 require('dotenv').config(); // Carga las variables de entorno desde el archivo .env
 const cors = require('cors');
@@ -28,6 +29,10 @@ app.use( express.json() );
 // Rutas: Define las rutas para autenticación y eventos
 app.use('/api/auth', require('./routes/auth') );    // Rutas para autenticación: crear usuario, login, renovar token
 app.use('/api/events', require('./routes/events') );    // Rutas CRUD (Crear, Leer, Actualizar, Eliminar) para eventos
+
+app.use('*', ( req, res ) => {
+    res.sendFile( path.join( __dirname, 'public/index.html' ) );
+});
 
 // Escuchar peticiones: El servidor escucha las peticiones en el puerto especificado en las variables de entorno
 app.listen( process.env.PORT, () =>{
