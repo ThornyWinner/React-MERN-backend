@@ -30,6 +30,7 @@ app.use( express.json() );
 app.use('/api/auth', require('./routes/auth') );    // Rutas para autenticación: crear usuario, login, renovar token
 app.use('/api/events', require('./routes/events') );    // Rutas CRUD (Crear, Leer, Actualizar, Eliminar) para eventos
 
+// Redirección al login
 app.use('*', ( req, res ) => {
     res.sendFile( path.join( __dirname, 'public/index.html' ) );
 });
