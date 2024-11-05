@@ -25,7 +25,7 @@ router.post(
     '/new', 
     [ // Middlewares para validar los campos antes de crear el usuario
         check('name', 'El nombre es obligatorio').not().isEmpty(),  // Vrifica que el nombre no esté vacío
-        check('email', 'El email es obligatorio').isEmail().toLowerCase(),    // Verifica que el email tenga un formato válido
+        check('email', 'El email es obligatorio').isEmail(),    // Verifica que el email tenga un formato válido
         check('password', 'El password debe de ser de 6 caracteres').isLength({ min:6 }),   // Verifica que el password tenga al menos 6 caracteres
         validarCampos   // Middleware que verifica si hay errores en las validaciones anteriores
     ], 
@@ -36,7 +36,7 @@ router.post(
 router.post(
     '/',
     [ // Middlewares para validar los campos antes de hacer login
-        check('email', 'El email es obligatorio').isEmail().toLowerCase(),    // Verifica que el email tenga un formato válido
+        check('email', 'El email es obligatorio').isEmail(),    // Verifica que el email tenga un formato válido
         check('password', 'El password debe de ser de 6 caracteres').isLength({ min:6 }),   // Verifica que el password tenga al menos 6 caracteres
         validarCampos   // Middleware que verifica si hay errores en las validaciones anteriores
     ],
