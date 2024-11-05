@@ -22,7 +22,7 @@ const { validarCampos } = require('../middlewares/validar-campos'); // Middlewar
 const { validarJWT } = require ('../middlewares/validar-jwt');  // Middleware para validar el token JWT
 const { getEventos, crearEvento, actualizarEvento, eliminarEvento } = require('../controllers/events'); // Controladores para la lógica de eventos
 
-const router= Router(); // Creamos una nueva instancia del router
+const router = Router(); // Creamos una nueva instancia del router
 
 // Todas las rutas deben pasar por la validación del JWT
 router.use( validarJWT );
@@ -44,7 +44,16 @@ router.post(
 );
 
 // Ruta para actualizar un evento existente
-router.put('/:id', actualizarEvento );  // Recibe el id del evento a actualizar como parámetro
+router.put(
+    '/:id', 
+    [
+        check('title','El titulo es obligatorio').not().isEmpty(),
+        check('start','Fecha de inicio es obligatoria').custom( isDate ),
+        check('end','Fecha de finalización es obligatoria').custom( isDate ),
+        validarCampos
+    ],
+    actualizarEvento 
+);  // Recibe el id del evento a actualizar como parámetro
 
 // Ruta para eliminar un evento
 router.delete('/:id', eliminarEvento ); // Recibe el id del evento a eliminar como parámetro
