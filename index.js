@@ -4,6 +4,7 @@
 
 
 // Importamos express, dotenv para variables de entorno, cors y la conexión a la base de datos
+const path = require('path');
 const express = require('express');
 require('dotenv').config(); // Carga las variables de entorno desde el archivo .env
 const cors = require('cors');
