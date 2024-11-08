@@ -1,2 +1,5 @@
+
+node_modules/
 .env
 Mongo
+node_modules
