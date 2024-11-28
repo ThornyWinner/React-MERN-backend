@@ -41,7 +41,7 @@ const crearUsuario = async (req, res = response) => {
         const token = await generarJWT(usuario.id, usuario.name);
 
         //Enviar el mail de verificación al cliente
-        const mail = await enviarMailVerificacion(email, "Token")
+        const mail = await enviarMailVerificacion(usuario.email, "Token")
         console.log(mail)
         if (mail.accepted === 0) {
             return res(500).send({ status: "error", message: "Error enviando mail de verificación" })
@@ -52,6 +52,7 @@ const crearUsuario = async (req, res = response) => {
             ok: true,
             uid: usuario.id,
             name: usuario.name,
+            email: usuario.email,
             token
         });
 
@@ -99,6 +100,7 @@ const loginUsuario = async (req, res = response) => {
             ok: true,
             uid: usuario.id,
             name: usuario.name,
+            email: usuario.email,
             token
         })
 

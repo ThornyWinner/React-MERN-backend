@@ -43,9 +43,8 @@ function crearMailVerificacion(token){
     <h1>Verificación de correo electrónico - EHAppCalendar.lat</h1>
     <p>Se ha creado una cuenta en EHAppCalendar.lat con este correo electrónico.</p>
       <p>Si esta cuenta no fue creada por usted, ignore este correo.</p>
-      <p></p>Si usted creó la cuenta, entonces verifique la cuenta <a href="http://localhost:4000/verificar/${token}" target="_blank" rel="noopener noreferrer">haciendo click aquí</a>.</p>
+      <p></p>Si usted creó la cuenta, por favor, verifique su cuenta <a href="http://localhost:4000/verificar/${token}" target="_blank" rel="noopener noreferrer">haciendo click aquí</a>.</p>
       <p><strong>¡Saludos!</strong></p>
-      <p>CEO EHAppCalendar</p>
   </body>
   </html>
   `
