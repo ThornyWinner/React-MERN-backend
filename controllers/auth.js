@@ -9,7 +9,6 @@ const { response } = require('express');
 const bcrypt = require('bcryptjs'); // Para encriptar las contraseñas
 const Usuario = require('../models/Usuario');   // El modelo de Usuario
 const { generarJWT } = require('../helpers/jwt');   // Función para generar el token JWT
-const { enviarMailVerificacion } = require('../services/mail.service.js');
 
 // Función para crear un nuevo usuario
 const crearUsuario = async (req, res = response) => {
@@ -38,15 +37,8 @@ const crearUsuario = async (req, res = response) => {
         await usuario.save();
 
         // Generamos un token JWT usando el id y el nombre del usuario
-        const token = await generarJWT(usuario.id, usuario.name);
+        const token = await generarJWT( usuario.id, usuario.name );
 
-        //Enviar el mail de verificación al cliente
-        const mail = await enviarMailVerificacion(usuario.email, "Token")
-        console.log(mail)
-        if (mail.accepted === 0) {
-            return res(500).send({ status: "error", message: "Error enviando mail de verificación" })
-        }
-        
         // Respondemos con el id, nombre y token del nuevo usuario
         res.status(201).json({
             ok: true,
